@@ -3,8 +3,10 @@ package withAllure;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Configuration.startMaximized;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
@@ -26,9 +28,7 @@ public class SelenideTestWithAllure {
         });
 
         step("Ищем репозиторий", () -> {
-            $(".header-search-input").click();
-            $(".header-search-input").sendKeys("eroshenkoam/allure-example");
-            $(".header-search-input").submit();
+            $(".header-search-input").setValue("eroshenkoam/allure-example").submit();
         });
 
         step("Переходим в репозиторий", () -> {
@@ -39,6 +39,9 @@ public class SelenideTestWithAllure {
             $(partialLinkText("Issues")).click();
         });
 
-        steps.checkNumber();
+        step("Проверяем, что существует Issue с номером 68", ()->{
+            $(withText("#68")).should(exist);
+        });
+
     }
 }
