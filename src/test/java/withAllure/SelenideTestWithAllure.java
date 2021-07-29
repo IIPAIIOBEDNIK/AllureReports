@@ -1,17 +1,17 @@
+package withAllure;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Configuration.*;
+import static com.codeborne.selenide.Configuration.baseUrl;
+import static com.codeborne.selenide.Configuration.startMaximized;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
-import static org.openqa.selenium.By.*;
+import static org.openqa.selenium.By.linkText;
+import static org.openqa.selenium.By.partialLinkText;
 
-
-
-public class SelenideTest {
-
-    private WebSteps steps = new WebSteps();
+public class SelenideTestWithAllure {
 
     @BeforeAll
     static void setup() {
@@ -41,5 +41,4 @@ public class SelenideTest {
 
         steps.checkNumber();
     }
-
 }
